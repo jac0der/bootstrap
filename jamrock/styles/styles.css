@@ -370,3 +370,37 @@ dl {
 */
 
 
+
+/*
+    Hobies styles start
+    **********************************************
+*/
+
+.card-title{
+    color:#FFB81C;
+    font-weight: bolder;
+}
+
+.card-text{
+    color:#BBCEA8;
+    font-weight:lighter;
+}
+
+#activities .card-body{
+    height: 20vh;
+}
+
+#activities .card img{
+    opacity: 0.7;
+}
+
+#activities .card img:hover{
+    opacity: 1;
+}
+
+/*
+    Hobbies styles end
+    **********************************************
+*/
+
+
