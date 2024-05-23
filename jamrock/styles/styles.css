@@ -1,0 +1,350 @@
+/* color scheme
+    black -> #1B2021
+    green -> #007749
+    gold -> #FFB81C
+    red -> #A41623
+
+    light-green -> #D5F2E3
+    medium-green -> #BBCEA8
+*/
+
+
+/*
+    extend bootstrap utility classes start
+    **********************************************  
+*/
+.py-6{
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+}
+
+.py-7{
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+}
+
+.py-8{
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+}
+
+.pt-6{
+    padding-top: 6rem;
+}
+
+.mb-6{
+    margin-bottom: 6rem;
+}
+
+.mt-6{
+    margin-top: 6rem;
+}
+
+/*
+    extend bootstrap utility classes end
+    **********************************************  
+*/
+
+
+/*
+    nav bar styles start
+    **********************************************
+*/
+.navbar {
+    background-color: #1B2021 !important;
+}
+
+.navbar-brand {
+    color: #D5F2E3; /* Set text color */
+    font-weight: bold; /* Make the text bold */
+    font-size:1.5rem; /* settext-primary font size*/
+}
+
+.navbar-brand:hover {
+    color: #FFB81C; /* Set text color */
+    font-weight: bold; /* Make the text bold */
+}
+
+.navbar-brand.foot {
+   
+    font-weight: bold; /* Make the text bold */
+    font-size:1.5rem; /* settext-primary font size*/
+}
+
+.navbar-brand.foot:hover {
+
+    font-weight: bold; /* Make the text bold */
+    font-size:1.5rem; /* settext-primary font size*/
+}
+
+footer a{
+    color: #FFB81C;
+    text-decoration: none;
+}
+
+footer a.bg-anchor{
+    padding: 5px;
+    background-color: #002c1b;
+}
+
+footer a:hover{
+    color: #BBCEA8;
+}
+
+
+.nav-link{
+    color: #BBCEA8;
+    font-weight: bolder;
+    font-size: 1rem;
+}
+
+.nav-link:hover{
+    color: #FFB81C;
+    font-weight: bolder;
+}
+
+/* Active link style */
+.navbar-nav .nav-link.active {
+    color: #FFB81C; /* Set active link text color */
+}
+
+.navbar-toggler{
+    background-color: #FFB81C;
+}
+
+/*
+    nav bar styles end
+    **********************************************
+*/
+
+
+/*
+    General styles start
+    **********************************************
+*/
+.helpp{
+    cursor:help;
+}
+/*
+    General styles end
+    **********************************************
+*/
+
+
+
+/*
+    Home styles start
+    **********************************************
+*/
+
+/* ----------- whoami --------------*/
+#whoami span a, #jamaica-beauty span a{
+    text-decoration: none;
+    color: #A41623;
+}
+
+
+#whoami span a:hover, #jamaica-beauty span a:hover{
+    text-decoration: none;
+    color: #007749;
+}
+
+#whoami img{
+    opacity: 0.7;
+}
+
+#whoami img:hover{
+    opacity: 1;
+}
+
+#jamaica-beauty > section > div a#discoverja{
+    color:#A41623;
+}
+
+#jamaica-beauty > section > div a#discoverja:hover{
+    color:#007749;
+}
+
+#faqs-slangs hr{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#jamrockCarousel h5 {
+    color: #007749;
+    text-transform: uppercase;
+}
+.bg-carousel-title{
+    padding:5px;
+    border-radius: 7px;
+    text-transform: uppercase;
+    color: #FFB81C;
+    background-color: #002c1b;
+    opacity: 0.8;
+}
+
+.bg-carousel-text{
+    padding:5px;
+    border-radius: 7px;
+    color: #002c1b;
+    background-color: white;
+    opacity: 0.5;
+}
+/*
+    Home styles end
+    **********************************************
+*/
+
+
+/*
+    backgound color styles start
+    **********************************************
+*/
+.bg-primary{
+    background-color: #1B2021 !important;
+}
+
+.bg-green{
+    background-color: #007749;
+}
+
+.bg-md-green{
+    background-color: #BBCEA8;
+}
+
+.bg-li-green{
+    background-color: #D5F2E3;
+}
+
+/*
+    backgound color styles end
+    **********************************************
+*/
+
+
+/*
+    text styles start
+    **********************************************
+*/
+header section div h1.text-primary{
+    color: #BBCEA8 !important;
+}
+
+.text-primary{
+    color: #007749 !important;
+}
+
+.text-secondary{
+    color: #A41623 !important;
+}
+
+.text-third{
+    color: #FFB81C;
+}
+
+.text-md-green{
+    color: #BBCEA8;
+}
+
+.text-li-green{
+    color: #BBCEA8;
+}
+
+/*
+    text styles end
+    **********************************************
+*/
+
+
+/*
+    element styles start
+    **********************************************
+*/
+h3{
+    color: #A41623 !important;
+}
+
+hr{
+    border: 1px solid red;
+}
+
+#ytvid{
+    width: 100%;
+    height: 100%;
+    box-shadow: 10px 10px 10px #002c1b;
+}
+
+#header-wrapper{
+    background: rgba(4, 57, 29, 0.7) url('https://images.pexels.com/photos/19565413/pexels-photo-19565413/free-photo-of-drone-shot-of-rockhouse-hotel-in-montego-bay.jpeg');
+    background-attachment:fixed;
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode:overlay;
+}
+
+#jamaica-beauty{
+    background: rgba(10, 12, 12, 1) url('https://cdn.pixabay.com/photo/2013/07/12/17/01/bob-marley-151687_960_720.png');
+    background-attachment:fixed;
+    background-position:top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode:overlay;
+}
+
+.video-container.popout {
+    position: fixed; /* Initially fixed position */
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    height: 200px;
+    transition: width 0.3s, height 0.3s, right 0.3s, bottom 0.3s;
+    z-index: 100; /* set the z-index to keep popped out video above all other page elements */
+}
+
+.popin-video{
+    display: none;
+    text-transform: none;
+    text-decoration: none;
+}
+
+.popin-video:hover{
+    color: #A41623;
+}
+
+/*
+    element styles end
+    **********************************************
+*/
+
+
+
+/*
+    button styles start
+    **********************************************
+*/
+.btn-primary{
+    color: white;
+    background-color:#A41623;
+    border-radius: 10px;
+    font-weight:normal;
+    border:none;
+}
+
+
+.btn-primary:hover{
+    background-color:#007749;
+    border:none;
+}
+
+.accordion-button:focus{
+    color: #FFB81C;
+}
+
+
+/*
+    button styles end
+    **********************************************
+*/
+
+
