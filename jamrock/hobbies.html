@@ -5,9 +5,141 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Latest compiled and minified CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Document</title>
+        <link rel="stylesheet" href="./styles/styles.css">
+    <title>JAMROCK</title>
 </head>
 <body>
+    <!-- navigation -->
+    <!-- expand navbar at medium breakpoint -->
+    <nav class="navbar navbar-expand-md bg-body-tertiary sticky-top py-2">
+        <div class="container-md">
+            <a class="navbar-brand" href="./index.html">
+                <span class="fw-bold">JAMROCK</span>
+            </a>
+
+            <!-- toggle button for mobile nav -->
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./hobbies.html">Hobbies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./jamdown.html">Jamdown</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./music.html">Music</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="container-md py-8 text-center">
+        <h1 class="display-1 fw-bold text-primary">What Do I Like Doing?</h1>
+        <p class="lead">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur suscipit obcaecati, facilis enim 
+            pariatur facere quo a maiores cumque! Atque.
+        </p>
+    </header>
+
+    <main class="container-fluid">
+        
+        <div id="mind-nurturing" class="container-md w-75 rounded py-5 px-0 text-center bg-li-gray">
+
+            <h3>Mind Nurturing</h3>
+            <hr class="w-75" style="margin:0 auto;"/>
+
+            <div class="row py-5 px-0 justify-content-center">
+                
+                <div class="col-md-5 px-0">
+                    <img 
+                        class="img-fluid w-20 rounded mb-3" 
+                        src="https://cdn.pixabay.com/photo/2016/04/11/19/38/bible-1322790_960_720.jpg" 
+                        alt="bible image at book of Job"
+                    >
+                    <h4 class="text-uppercase">Bible Study</h4>
+                    <p>
+                        Bible study is cruicial to my daily operating. The Word of God
+                        keeps me focused spiritually, which in tern keeps me aligned to God's
+                        principles and also fuels my productivity.
+                    </p>
+
+
+
+                    <h4 class="text-uppercase mt-5">Rest</h4>
+                    <p class="bg-green p-3 text-light rounded">
+                        The mind and body needs ample time to recover from a hard days work to replenish.
+                        So I ensure I get enough rest to ensure I am energetic in facing tasks each day.
+                        Rest is also just important for good overall health.
+                    </p>
+                </div>
+                
+                <div class="col-md-5 text-md-start ms-5">
+                    
+
+                    <div class="bg-md-green p-3 rounded">
+                        <h4 class="text-uppercase text-primary">Reading</h4>
+                        <p>
+                            The mind is a muscle which needs to be kept in tip-top shape for it to be
+                            at its peak ferformance. Today, a lot of convenience exists which could lead 
+                            to less and less use of the humnan mind, which may lead to reduced performance 
+                            of one's mind.
+                        </p>
+                        <p>
+                            As I am aware of such matter, I ensure I read regularly to exercise
+                            my mind. I have no boundaries on what I read, as knowledge has no bounds really, but 
+                            generally I read a lot of tech books and other books such as the Colin Powell 
+                            autobiography I am currently reading.
+                        </p>
+                        <p>
+                            I read Linux blogs and other tech blogs as well as watch Linux youtube channels.
+                        </p>
+                        <dl>
+                            <dt class="text-primary">Linux Reads</dt>
+                            <dd><a href="https://www.omgubuntu.co.uk" target="_blank">OMG Ubuntu</a></dd>
+                            <dd><a href="https://fosspost.org" target="_blank">Fost Post</a></dd>
+                            
+                            <dt class="text-primary">Linux Youtube Channels</dt>
+                            <dd><a href="https://www.youtube.com/@LearnLinuxTV" target="_blank">Learn Linux TV</a></dd>
+                            <dd><a href="https://www.youtube.com/@DistroTube" target="_blank">Distro Tube</a></dd>
+
+                        </dl>
+                    </div>
+
+
+
+                    <h4 class="text-uppercase mt-5">Retrieval Practice</h4>
+                    <p class="bg-third p-3 text-dark rounded">
+                        Theoty is good to become grounded in the fundamentals. However, to truly learn a concept,
+                        it needs to be stored in long term memory. To help with this, simply re-reading or re-watching 
+                        a video is not very effective. When we are forced to recal is when we recognized what we really 
+                        know. At times we may forget something, but this is perfectly normal and the purpose of the 
+                        retrieval practice to then go back to the material to help aid recollection, hence reenforcing
+                        concept in long-term memory.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        
+    </main>
 
 
     <!-- Latest compiled JavaScript -->
