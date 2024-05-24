@@ -263,6 +263,10 @@ header section div h1.text-primary{
     color: var(--light-green-color);
 }
 
+.text-red{
+    color: var(--red-color);
+}
+
 /*
     text styles end
     **********************************************
@@ -335,13 +339,24 @@ dl {
     position: relative;
 }
 
-.music-img img, .food-img img{
+.beach-img{
+    position: relative;
+}
+
+.music-img img, .food-img img, .beach-img img{
     height:100%;
     object-fit: cover;
 }
 
 
 #music .music-img h3{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: var(--gold-color) !important;
+}
+
+#beach .beach-img h3{
     position: absolute;
     top: 50%;
     left: 50%;
