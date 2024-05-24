@@ -386,9 +386,6 @@ dl {
     font-weight:lighter;
 }
 
-#activities .card-body{
-    height: 20vh;
-}
 
 #activities .card img{
     opacity: 0.7;
