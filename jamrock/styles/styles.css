@@ -1,14 +1,5 @@
 /* color scheme
-    black -> #1B2021
-    green -> #007749
-    gold -> #FFB81C
-    red -> #A41623
-
-    light-green -> #D5F2E3
-    medium-green -> #BBCEA8
-    light-gray -> #EDF1F2
 */
-
 :root{
     --primary-color:#1B2021;
     --secondary-color:#007749;
