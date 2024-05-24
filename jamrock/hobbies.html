@@ -32,10 +32,10 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
+                        <a class="nav-link" href="./index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./hobbies.html">Hobbies</a>
+                        <a class="nav-link active" aria-current="page" href="./hobbies.html">Hobbies</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="./jamdown.html">Jamdown</a>
@@ -48,19 +48,18 @@
         </div>
     </nav>
 
-    <header class="container-md py-8 text-center">
-        <h1 class="display-1 fw-bold text-primary">What Do I Like Doing?</h1>
-        <p class="lead">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur suscipit obcaecati, facilis enim 
-            pariatur facere quo a maiores cumque! Atque.
+    <header id="header" class="container-md py-8 text-center">
+        <h1 class="display-1 fw-bold text-primary">My Interests</h1>
+        <p class="lead text-uppercase mt-4">
+            All about what drives me.
         </p>
     </header>
 
     <main class="container-fluid">
         
-        <div id="mind-nurturing" class="container-md w-75 rounded py-5 px-0 text-center bg-li-gray">
+        <section id="mind-nurturing" class="container-md w-75 rounded py-5 px-0 text-center bg-li-gray">
 
-            <h3>Mind Nurturing</h3>
+            <h3 class="display-3">Mind Nurturing</h3>
             <hr class="w-75" style="margin:0 auto;"/>
 
             <div class="row py-5 px-0 justify-content-center">
@@ -120,8 +119,6 @@
                         </dl>
                     </div>
 
-
-
                     <h4 class="text-uppercase mt-5">Retrieval Practice</h4>
                     <p class="bg-third p-3 text-dark rounded">
                         Theoty is good to become grounded in the fundamentals. However, to truly learn a concept,
@@ -136,10 +133,10 @@
 
             </div>
 
-        </div>
+        </section>
 
         <!-- using fluid container from main section here -->
-        <div id="activities" class="row bg-md-green p-0">
+        <section id="activities" class="row bg-md-green p-0">
 
             <div class="col-md-4 p-0 d-flex align-items-stretch">
 
@@ -151,7 +148,7 @@
                         I grew up playing football on the streets with or without shoes with firends. We played on concrete 
                         surfaces as well as on fields for the love of the sport. Every Saturday morning it's game time with
                         a few young men from the community, as I try to show them a different aspect of life apart from the 
-                        negative options portrayed in our society today.
+                        negative options portrayed in our society today. I also enjoy playing basketball as well.
                     </p> 
                     </div>
                   </div>
@@ -187,13 +184,69 @@
                   </div>
             </div>
 
-        </div>
+        </section>
 
-        <div id="food" class="container-md">
-            <section class="row">
-                
-            </section>
-        </div>
+        <section id="food" class="row text-center bg-green">
+
+            <div class="col-md-6 food-img px-0">
+                <h3 class="display-2 rounded bg-third p-2 fw-bold text-uppercase">food</h3>
+                <img 
+                    class="img-fluid"
+                    src="https://images.unsplash.com/photo-1632859965308-d15227508c4b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'" 
+                    alt="accke and saltfish meal">
+            </div>
+
+            <div class="col-md-6 py-8 m-auto">
+
+                <p class="lead text-uppercase text-md-green">I am not greedy, but!</p>
+                <h3 class="display-3 text-light pb-3">I'm A Foodie</h3>
+
+                <p class="w-75 lead mx-auto text-third pb-3">
+                    I am fairly adventurous when it comes to food. I love trying new types of food, but I am easily
+                    turned off if food is not properly prepared. Presentation is also a plus but not my first concern 
+                    in certain situations. Food should be seasoned and cooked properly. Jamaica is well known for having
+                    a great food such as <span class="text-dark fw-bold fs-4">Ackee and saltfish</span>, 
+                    <span class="text-dark fw-bold fs-4">Jerked Chicken</span> and the <span class="text-dark fw-bold fs-4">Patties</span>. 
+                    There is also great street food options by the locals at apecific spots or the pushcart soup vendors. Different coultures 
+                    such as the Chineese, Indians and Jewish along with other ethinic gorups have also incorporated their traditional dishes 
+                    with a Jamaican twist. All in all, great food is on the Island.
+                </p>
+
+                <a class="btn btn-success btn-lg" href="./jamdown.html">More Food</a>
+
+            </div>
+
+        </section>
+
+
+        <section id="music" class="row text-center bg-primary">
+
+            <div class="col-md-6 py-8 order-2 order-lg-1">
+
+                <p class="lead text-uppercase text-md-green">I cannot sing, but!</p>
+                <h3 class="display-3 text-light pb-3">I love Music</h3>
+
+                <p class="w-75 lead mx-auto text-third pb-3">
+                    Even if you have never been to Jamaica or even heard of Jamaica, chances are you would 
+                    have heard about <span class="fw-bolder text-success fs-4">Bob Marley</span> - especially the song 
+                    <span class="fw-bolder text-success fs-4">One Love</span>. Reggae music was a vehicle used by great artists
+                    such as Bob Marley, Jimmy Cliff and others to make Jamaica known to the world. My source of music which I love
+                    is music which uplifts and highlights the Most High <span class="fw-bolder text-success fs-4">YAH</span>.
+                </p>
+
+                <a class="btn btn-dark btn-lg" href="./music.html">More Music</a>
+
+            </div>
+
+            <div class="col-md-6 music-img px-0 order-1 order-lg-2">
+                <h3 class="display-2 rounded bg-dark p-2 fw-bold text-uppercase">music</h3>
+                <img
+                    class="img-fluid"
+                    src="https://images.unsplash.com/photo-1483412033650-1015ddeb83d1?q=80&w=2073&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                    alt="headphones among records">
+            </div>
+
+        </section>
         
     </main>
 
@@ -214,7 +267,7 @@
 
         <div class="col-sm-4 order-1 order-sm-3">
             <h1 class="fw-bolder">
-                <a href="#nav" class="bg-anchor" title="Back To Top" >^</a>
+                <a href="#header" class="bg-anchor" title="Back To Top" >^</a>
             </h1>
         </div>
 

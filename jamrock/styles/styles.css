@@ -9,6 +9,16 @@
     light-gray -> #EDF1F2
 */
 
+:root{
+    --primary-color:#1B2021;
+    --secondary-color:#007749;
+    --gold-color:#FFB81C;
+    --red-color: #A41623;
+    --light-green-color: #D5F2E3;
+    --medium-green-color: #BBCEA8;
+    --light-gray-color: #EDF1F2;
+}
+
 
 /*
     extend bootstrap utility classes start
@@ -52,17 +62,17 @@
     **********************************************
 */
 .navbar {
-    background-color: #1B2021 !important;
+    background-color: var(--primary-color)  !important;
 }
 
 .navbar-brand {
-    color: #D5F2E3; /* Set text color */
+    color: var(--light-green-color); /* Set text color */
     font-weight: bold; /* Make the text bold */
     font-size:1.5rem; /* settext-primary font size*/
 }
 
 .navbar-brand:hover {
-    color: #FFB81C; /* Set text color */
+    color: var(--gold-color); /* Set text color */
     font-weight: bold; /* Make the text bold */
 }
 
@@ -79,7 +89,7 @@
 }
 
 footer a{
-    color: #FFB81C;
+    color: var(--gold-color);
     text-decoration: none;
 }
 
@@ -89,28 +99,28 @@ footer a.bg-anchor{
 }
 
 footer a:hover{
-    color: #BBCEA8;
+    color: var(--medium-green-color);
 }
 
 
 .nav-link{
-    color: #BBCEA8;
+    color: var(--medium-green-color);
     font-weight: bolder;
     font-size: 1rem;
 }
 
 .nav-link:hover{
-    color: #FFB81C;
+    color: var(--gold-color);
     font-weight: bolder;
 }
 
 /* Active link style */
 .navbar-nav .nav-link.active {
-    color: #FFB81C; /* Set active link text color */
+    color: var(--gold-color); /* Set active link text color */
 }
 
 .navbar-toggler{
-    background-color: #FFB81C;
+    background-color: var(--gold-color);
 }
 
 /*
@@ -141,13 +151,13 @@ footer a:hover{
 /* ----------- whoami --------------*/
 #whoami span a, #jamaica-beauty span a{
     text-decoration: none;
-    color: #A41623;
+    color: var(--red-color);
 }
 
 
 #whoami span a:hover, #jamaica-beauty span a:hover{
     text-decoration: none;
-    color: #007749;
+    color: var(--secondary-color);
 }
 
 #whoami img{
@@ -159,11 +169,11 @@ footer a:hover{
 }
 
 #jamaica-beauty > section > div a#discoverja{
-    color:#A41623;
+    color: var(--red-color);
 }
 
 #jamaica-beauty > section > div a#discoverja:hover{
-    color:#007749;
+    color: var(--secondary-color);
 }
 
 #faqs-slangs hr{
@@ -172,14 +182,14 @@ footer a:hover{
 }
 
 #jamrockCarousel h5 {
-    color: #007749;
+    color: var(--secondary-color);;
     text-transform: uppercase;
 }
 .bg-carousel-title{
     padding:5px;
     border-radius: 7px;
     text-transform: uppercase;
-    color: #FFB81C;
+    color: var(--gold-color);
     background-color: #002c1b;
     opacity: 0.8;
 }
@@ -202,27 +212,31 @@ footer a:hover{
     **********************************************
 */
 .bg-primary{
-    background-color: #1B2021 !important;
+    background-color: var(--primary-color) !important;
 }
 
 .bg-green{
-    background-color: #007749;
+    background-color: var(--secondary-color);;
 }
 
 .bg-md-green{
-    background-color: #BBCEA8;
+    background-color: var(--medium-green-color);
 }
 
 .bg-li-green{
-    background-color: #D5F2E3;
+    background-color: var(--light-green-color);
 }
 
 .bg-li-gray{
-    background-color: #EDF1F2;
+    background-color: var(--light-gray-color);
 }
 
 .bg-third{
-    background-color: #FFB81C;
+    background-color: var(--gold-color);
+}
+
+.bg-red{
+    background-color: var(--red-color);
 }
 /*
     backgound color styles end
@@ -235,27 +249,27 @@ footer a:hover{
     **********************************************
 */
 header section div h1.text-primary{
-    color: #BBCEA8 !important;
+    color: var(--medium-green-color) !important;
 }
 
 .text-primary{
-    color: #007749 !important;
+    color: var(--secondary-color) !important;
 }
 
 .text-secondary{
-    color: #A41623 !important;
+    color: var(--red-color) !important;
 }
 
 .text-third{
-    color: #FFB81C;
+    color: var(--gold-color);
 }
 
 .text-md-green{
-    color: #BBCEA8;
+    color: var(--medium-green-color);
 }
 
 .text-li-green{
-    color: #BBCEA8;
+    color: var(--light-green-color);
 }
 
 /*
@@ -269,7 +283,7 @@ header section div h1.text-primary{
     **********************************************
 */
 h3{
-    color: #A41623 !important;
+    color: var(--red-color) !important;
 }
 
 hr{
@@ -314,6 +328,37 @@ dl {
     background-blend-mode:overlay;
 }
 
+
+.food-img{
+    position: relative;
+}
+
+
+.food-img h3{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.music-img{
+    position: relative;
+}
+
+.music-img img, .food-img img{
+    height:100%;
+    object-fit: cover;
+}
+
+
+#music .music-img h3{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: var(--gold-color) !important;
+}
+
+
+
 .video-container.popout {
     position: fixed; /* Initially fixed position */
     bottom: 20px;
@@ -331,9 +376,12 @@ dl {
 }
 
 .popin-video:hover{
-    color: #A41623;
+    color: var(--red-color);
 }
 
+.center-element{
+    margin:0 auto;
+}
 /*
     element styles end
     **********************************************
@@ -347,7 +395,7 @@ dl {
 */
 .btn-primary{
     color: white;
-    background-color:#A41623;
+    background-color: var(--red-color);
     border-radius: 10px;
     font-weight:normal;
     border:none;
@@ -355,12 +403,12 @@ dl {
 
 
 .btn-primary:hover{
-    background-color:#007749;
+    background-color: var(--secondary-color);
     border:none;
 }
 
 .accordion-button:focus{
-    color: #FFB81C;
+    color: var(--gold-color);
 }
 
 
@@ -377,12 +425,12 @@ dl {
 */
 
 .card-title{
-    color:#FFB81C;
+    color: var(--gold-color);
     font-weight: bolder;
 }
 
 .card-text{
-    color:#BBCEA8;
+    color: var(--medium-green-color);
     font-weight:lighter;
 }
 
