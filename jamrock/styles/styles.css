@@ -536,6 +536,41 @@ dl {
     z-index: 100; /* set the z-index to keep popped out video above all other page elements */
 }
 
+#highlights{
+    margin-top: -50px;
+
+}
+
+#highlights .col-md-4 {
+    overflow: hidden; /* prevent scaled images from spilling out containers*/
+}
+
+#highlights .equal-height {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#highlights .equal-height > .col-md-4 {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 0 0 50px 10px;
+}
+#highlights .equal-height > .col-md-4 img {
+    max-height: 300px;
+    flex-grow: 1;
+    object-fit:cover;
+    transition: transform 0.3s ease-in-out; /* Smooth transition */
+}
+
+#highlights .equal-height > .col-md-4 img:hover {
+    transform: scale(1.1); /* Scale up the image on hover */
+}
+
+#highlights .content {
+    padding: 16px;
+}
 
 /*
     Jamdown styles end
