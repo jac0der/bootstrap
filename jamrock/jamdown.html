@@ -12,8 +12,30 @@
 
             document.addEventListener('DOMContentLoaded', function() 
             {
-                // get the navbar from DOM.
-                const nav_baar = document.getElementById('nav');
+                /*
+                    removes the video element on small screens to prevent loading the video on mobile devices. (Removed From DOM)
+                */
+                if (window.innerWidth < 768) 
+                {
+                    var videoBackground = document.querySelector('.video-background');
+
+                    if (videoBackground) {
+                        videoBackground.remove();
+                    }
+                }
+
+
+                const show_dialog = 'show-dialog';
+
+                // get the HTML elements from DOM.
+                const nav_bar = document.getElementById('nav');
+
+                const close_pledge = document.getElementById('close-national-pledge');
+
+                const btn_national_pledge = document.querySelector('.btn-national-pledge');
+
+                const national_anthem_modal = document.getElementById('national-anthem-modal');
+
 
                 /*
                     Track when user scrolls window to trigger the popout 
@@ -27,13 +49,109 @@
                     {
                             // apply popout class to the navbar
                             // to apply the css styles for the popout class
-                            nav_baar.classList.add('popout');
+                            nav_bar.classList.add('popout');
                     }                
                     else
                     {
                         // remove the popout class from navbar
-                        nav_baar.classList.remove('popout');
+                        nav_bar.classList.remove('popout');
                     }
+                });
+
+
+                btn_national_pledge.addEventListener('click', function(event)
+                {
+                    /*
+                        event.stopPropagation()
+                        used to prevent the click event on the button from propagating to the document, which would otherwise trigger the outsideClickListener function prematurely and hide the dialog immediately.
+                    */
+                    event.stopPropagation();
+
+                    showDialog('national-pledge');
+
+                });
+
+
+                function showDialog(dialogId) 
+                {
+                    let dialog = document.getElementById(dialogId);
+                    
+                    if (dialog) {
+                        // Initially set display to block
+                        dialog.style.display = 'block';
+                        
+                        // Allow the display change to take effect before starting the transition
+                        setTimeout(function() {
+                            dialog.classList.add(show_dialog);
+                        }, 10); // Slight delay to trigger reflow
+
+                        
+                        // Accessibility: move focus to the dialog
+                        dialog.setAttribute('tabindex', '-1');
+                        dialog.focus();
+                        
+                        // Define outsideClickListener function
+                        function outsideClickListener(event) {
+                            if (!dialog.contains(event.target)) {
+                                hideDialog();
+                            }
+                        }
+
+                        // Define keydownListener function
+                        function keydownListener(event) {
+                            if (event.key === 'Escape') {
+                                hideDialog();
+                            }
+                        }
+                        
+                        // Add event listeners
+                        document.addEventListener('click', outsideClickListener);
+                        document.addEventListener('keydown', keydownListener);
+
+                        // Define hideDialog function
+                        //removes the show-dialog class and hides the dialog with a slight delay to allow the transition to complete.
+                        function hideDialog() {
+                            dialog.classList.remove(show_dialog);
+
+                                // Remove event listeners
+                            document.removeEventListener('click', outsideClickListener);
+                            document.removeEventListener('keydown', keydownListener);
+                            
+                            // Delay to match the transition duration
+                            setTimeout(function() {
+                                dialog.style.display = 'none';
+                            }, 300); // Match the duration in CSS
+                            
+                        }
+                    }
+                }
+
+                // closing dialog with close "X" button
+                close_pledge.addEventListener('click', function()
+                {
+                    let dialog = document.getElementById('national-pledge');
+
+                    if(dialog)
+                    {
+                        dialog.classList.remove(show_dialog);
+                    }
+                });
+
+
+                /*
+                    stop national anthem youtube video if the modal
+                    is closed. Reset the src attribute of the iframe.
+                */
+                national_anthem_modal.addEventListener('hide.bs.modal', function(){
+                    console.log('welll');
+
+                    let anthem_video = document.getElementById('ytvid');
+                    let vid_src = anthem_video.getAttribute('src');
+                    console.log(vid_src);
+
+                    anthem_video.setAttribute('src', '');
+                    anthem_video.setAttribute('src', vid_src);
+                
                 });
 
             });
@@ -52,7 +170,7 @@
             Your browser does not support the video tag.
         </video>
         <div class="overlay"></div>
-        <div class="content">
+        <div class="content text-center">
             <h1 class="display-1 fw-bolder text-uppercase">Welcome to <span class="text-third">Jam</span><span class="text-primary">down</span></h1>
             <h1 class="display-6 text-uppercase mt-4">Home of Legends</h1>
             <p class="lead fs-3">Experience the beauty of Jamaica</p>
@@ -102,11 +220,12 @@
                 </div>
             </nav>
 
-            <div class="container-md">
+            <div id="motto" class="container-md">
 
-                <div class="row align-items-center justify-content-center h-130" style="height: 800px;">
+                <div class="row align-items-center justify-content-center">
                 
-                    <div class="col-md-9 text-center">
+                    <div class="col-md-9 text-center py-5">
+
                         <p class="lead text-uppercase fw-bolder fs-4 text-light">Motto</p>
 
                         <h1 class="display-1 text-uppercase text-third fw-bolder">Out of Many,</h1>
@@ -121,94 +240,481 @@
                         <p class="lead text-light fs-4">
                             The wide diversity of cultures merged into one formed the little exceptional island of jamaica. Different groups, but one,
                             hence the motto - out of many one people.
-                        </p>
-    
+                        </p>    
+
                     </div>
+
                 </div>
                 
             </div>
-
             
     </header>
 
-    <div id="highlights" class="container-md">
+    <div id="highlights" class="container-xl">
 
-        <div class="row justify-content-around equal-height">
+        <div class="row equal-height">
 
-            <div class="col-md-4 bg-green px-0 text-center">
+            <div class="col-xl-4 bg-green px-0 text-center">
+
                 <img 
                     class="img-fluid" 
                     src="https://images.unsplash.com/photo-1632859965308-d15227508c4b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                    alt="">
-                <div class="content">
-                    <h4 class="text-uppercase text-third">Food</h4>
-                    <p class="p-4">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum nostrum ab at sapiente voluptatum iure assumenda, neque eius ducimus voluptatibus.
+                    alt="ackee and saltfish dish">
+                <div class="content py-4">
+                    <h4 class="text-uppercase text-third fw-bolder">Food</h4>
+                    <p class="p-4 text-li-green">
+                        Jamaican food is a vibrant and flavorful blend of indigenous, African, European, and Asian culinary traditions. Key ingredients include tropical fruits, vegetables, seafood, and meats, often seasoned with a variety of spices and herbs. Iconic dishes include jerk chicken, ackee and saltfish, oxtail, and patties. The cuisine is known for its bold flavors, with common elements like Scotch bonnet peppers, pimento (allspice), and thyme. Jamaican food not only reflects the island's diverse cultural influences but also its abundant natural resources and innovative culinary spirit.
                     </p>
-                    <a href="#" class="btn btn-success btn-lg mb-3 text-uppercase">Food</a>
+                    <a href="#national-dish" class="btn btn-success btn-lg mb-3 text-uppercase">Food</a>
                 </div>
+
             </div>
-            <div class="col-md-4 bg-third px-0 text-center">
+
+            <div class="col-xl-4 bg-third px-0 text-center">
+
                 <img 
                     class="img-fluid" 
                     src="https://a.travel-assets.com/findyours-php/viewfinder/images/res70/60000/60410-Green-Grotto-Caves.jpg" 
-                    alt="">
-                <div class="content">
-                    <h4 class="text-uppercase text-red">Adventure</h4>
-                    <p class="p-4 text-dark">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum nostrum ab at sapiente voluptatum iure assumenda, neque eius ducimus voluptatibus.
+                    alt="green grotto cave">
+                <div class="content py-4">
+                    <h4 class="text-uppercase text-red fw-bolder">Adventure</h4>
+                    <p class="px-4 text-dark">
+                        Jamaican tourism offers a wide array of attractions and activities, making it a popular destination for travelers. The island boasts stunning beaches, such as those in Negril and Montego Bay, where visitors can enjoy sunbathing, swimming, and water sports. Jamaica is also famous for its lush landscapes, including the Blue Mountains, ideal for hiking and coffee tours. Cultural experiences abound in cities like Kingston, home to the Bob Marley Museum and vibrant nightlife. Adventure seekers can explore waterfalls, such as Dunn's River Falls, and go rafting on the Martha Brae River. With its rich cultural heritage, natural beauty, and warm hospitality, Jamaica provides a memorable travel experience for all types of tourists.
                     </p>
                     <a href="#" class="btn btn-dark btn-lg mb-3 text-uppercase">Tour</a>
                 </div>
+
             </div>
-            <div class="col-md-4 bg-red px-0 text-center">
+
+            <div class="col-xl-4 bg-red px-0 text-center">
+
                 <img 
                     class="img-fluid" 
                     src="https://cdn.pixabay.com/photo/2022/09/11/19/04/bob-marley-7447761_960_720.jpg" 
-                    alt="">
-                <div class="content">
-                    <h4 class="text-uppercase text-third">Music</h4>
-                    <p class="p-4">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum nostrum ab at sapiente voluptatum iure assumenda, neque eius ducimus voluptatibus.
+                    alt="bob marley">
+                <div class="content py-4">
+                    <h4 class="text-uppercase text-third fw-bolder">Music</h4>
+                    <p class="p-4 text-li-green">                        
+                        Jamaican music is globally renowned for its rich and diverse genres, most notably reggae, ska, and dancehall. Originating from the island's unique cultural blend, Jamaican music often addresses social issues, love, and spirituality. Reggae, with its roots in ska and rocksteady, gained worldwide fame through iconic artists like Bob Marley, who used the genre to spread messages of peace and resistance. Dancehall, known for its energetic rhythms and vibrant performances, evolved from reggae and has become a dominant force in contemporary Jamaican music. The island's musical heritage continues to influence and inspire artists worldwide.
                     </p>
                     <a href="#" class="btn btn-danger btn-lg mb-3 text-uppercase">Music</a>
                 </div>
             </div>
+
         </div>
+
     </div>
 
     <main>
 
-        <section class="row justify-content-center align-items-senter py-8">
+        <section id="national-flag" class="row justify-content-center align-items-center py-8">
 
-            <div class="col-md-6 text-center py-8">
+            <div class="col-xxl-8 text-center p-5">
 
                 <h2 class="display-2 text-primary">Our National Flag</h2>
-                <p class="lead"></p>
-                <p class="lead text-li-green py-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis id sequi natus expedita perspiciatis laboriosam maiores error temporibus nihil, eum sint voluptas modi. Eligendi facere possimus ipsum quam, officiis nisi neque dolorem quibusdam delectus doloremque ab impedit aliquam similique sequi atque pariatur nam excepturi consequuntur laudantium odit. Voluptas, magni natus!
-
+                <p class="lead text-li-green py-4">                    
+                    The Jamaican flag, a bold emblem of the island's national pride, consists of vibrant colors that reflect the nation's rich history and aspirations. The flag features diagonal stripes of black, yellow, and green, with two triangles meeting at a central point. Each color holds symbolic significance: black represents the strength and resilience of the Jamaican people, reflecting their struggles and triumphs throughout history. Yellow symbolizes the nation's abundant sunlight, natural resources, and bright future, while green embodies the lush vegetation and fertile lands of Jamaica, as well as hope and agricultural wealth.
                 </p>
+                <p class="lead text-li-green py-4">
+                    Designed by a bipartisan committee led by the Honorable Robert Hugh Olliviere, the Jamaican flag was officially adopted on August 6, 1962, coinciding with the nation's independence from British colonial rule. The flag's design represents unity and resilience, as well as the shared aspirations of Jamaica's diverse population. It serves as a powerful symbol of national identity, pride, and sovereignty, evoking a sense of belonging and solidarity among Jamaicans at home and abroad. With its bold colors and striking design, the Jamaican flag stands as a beacon of freedom, equality, and progress, inspiring generations to strive for a brighter future rooted in unity and peace.
+                </p>
+                <img 
+                    class="img-thumbnail jaflag" 
+                    src="https://cdn.pixabay.com/photo/2017/08/30/14/50/jamaica-2697405_960_720.jpg" 
+                    alt="jamaican flag"
+                >
+                <p class="lead text-li-green py-4">
+                    The Jamaican flag is unique among national flags for its distinct absence of the colors red, blue, or white, which are commonly found in many other flags around the world. This distinctive feature sets the Jamaican flag apart, emphasizing its originality and the unique identity of the nation. The choice of black, yellow, and green not only carries deep symbolic meanings but also showcases Jamaica's commitment to standing out and embracing its individuality. This singular characteristic highlights the country's rich cultural heritage and its spirit of independence and resilience.
+                </p>
+
                 <div class="btn-group mb-5">
-                    <a href="./hobbies.html" class="btn btn-info btn-md fw-bold">National Anthem</a>
-                    <a href="./jamdown.html" class="btn btn-danger btn-md fw-bold">National Pledge</a>
+                    <a class="btn btn-info btn-md fw-bold national-anthem" data-bs-toggle="modal" data-bs-target="#national-anthem-modal">National Anthem</a>
+                    <a class="btn btn-danger btn-md fw-bold btn-national-pledge">National Pledge</a>
                 </div>  
+
             </div>
 
-            <div class="col-md-6 text-end">
-                <img class="img-fluid" src="https://cdn.pixabay.com/photo/2015/03/14/18/29/jamaica-673591_960_720.png" alt="">
+            <div class="col-xxl-4 text-end">
+                <img class="img-fluid" src="https://cdn.pixabay.com/photo/2015/03/14/18/29/jamaica-673591_960_720.png" alt="jamaican flag thumbs up">
+            </div>
+            
+        </section>
+
+
+        <section class="row">
+
+            <div id="national-pledge" class="col-md-7 bg-primary p-0" aria-hidden="true" role="dialog">
+
+                <div id="national-pledge-header">
+                    <p class="text-light fw-bolder m-0 fs-5">National Pledge</p>
+                    <a id="close-national-pledge" class="text-light fw-bolder">X</a>
+                </div>
+                
+                <p class="text-light fs-3 p-2">
+                    Before God and all mankind, I pledge the love and loyalty of my heart, the wisdom and courage of my mind, the strength and vigor of my body in the service of my fellow citizens, I promise to stand up for Justice, Brotherhood and Peace, to work diligently and creatively, to think generously and honestly, so that Jamaica may, under God, increase in beauty, fellowship and prosperity, and play her part in advancing the welfare of the whole human race.
+                </p>
+
             </div>
 
         </section>
 
 
-        <section class="row justify-content-center align-items-senter py-8">
+        <section id="national-anthem">
+            <!-- Modal -->
+            <div class="modal fade" id="national-anthem-modal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="nationalAnthemLabel" aria-hidden="true" >
+                <div class="modal-dialog modal-dialog-centered modal-xl">
+
+                    <div class="modal-content bg-dark text-li-green">
+
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5 id="nationalAnthemLabel">National Anthem Of Jamaica</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <iframe id="ytvid"
+                                width="100%" 
+                                height="100%" 
+                                src="https://www.youtube.com/embed/78fm7M96gro?si=Re7uXPHp8v6DOUnh&amp;start=1" 
+                                title="YouTube video player" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                referrerpolicy="strict-origin-when-cross-origin" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <section id="jamacan-symbols" class="row justify-content-evenly align-items-senter py-8 m-0">
+
+            <h2 class="display-2 text-center mb-5"><span class="text-third">National</span><span class="text-primary"> Symbols</span></h2>
+
+            <div class="col-md-3 p-0 d-flex align-items-stretch">
+
+                <div class="card">
+                    <img src="https://jis.gov.jm/wp-content/cache/thumbnails/bird-1200x825-c.jpg" class="card-img-top" alt="playing football">
+                    <div class="card-body bg-primary">
+                      <h5 class="card-title">National Bird - Doctor Bird</h5>
+                      <p class="card-text">
+                        The Doctor Bird, Jamaica's national bird, epitomizes the island's natural beauty and cultural identity. Also known as the swallow-tailed hummingbird (Trochilus polytmus), this exquisite creature flaunts iridescent feathers that shimmer in the sunlight, showcasing a mesmerizing palette of green, black, and turquoise hues. Endemic to Jamaica, the Doctor Bird holds a revered place in Jamaican folklore and mythology, often depicted as a symbol of love, freedom, and resilience. Its distinctive long tail feathers evoke the image of a flowing tailcoat, reminiscent of a Victorian-era physician, hence the name "Doctor Bird." Revered for its grace and agility, the Doctor Bird symbolizes Jamaica's spirit of independence, vitality, and natural splendor, embodying the island's rich heritage and vibrant cultural tapestry.
+                    </p> 
+                    </div>
+                  </div>
+
+            </div>
+
+            <div class="col-md-3 p-0 d-flex align-items-stretc">
+
+                <div class="card">
+                    <img src="https://jis.gov.jm/wp-content/cache/thumbnails/tree-1200x825-c.jpg" class="card-img-top" alt="man jogging">
+                    <div class="card-body bg-primary">
+                      <h5 class="card-title">National Tree - Blue Mahoe</h5>
+                      <p class="card-text">
+                        The Blue Mahoe, designated as Jamaica's national tree, stands as a striking symbol of the island's rich biodiversity and cultural heritage. Renowned for its stunning blue-purple flowers and distinctive heart-shaped leaves, the Blue Mahoe graces Jamaica's landscape with its vibrant colors and graceful form. Indigenous to the Caribbean region, this majestic tree holds a special place in Jamaican folklore and traditions, revered for its beauty and resilience. Beyond its aesthetic appeal, the Blue Mahoe plays a vital ecological role, providing habitat for wildlife and contributing to the island's ecological balance. With its deep-rooted cultural significance and natural splendor, the Blue Mahoe symbolizes Jamaica's commitment to environmental stewardship and the preservation of its unique natural treasures.
+                      </p>  
+                    </div>
+                  </div>
+            </div>
+
+            <div class="col-md-3 p-0 d-flex align-items-stretch">
+
+                <div class="card" >
+                    <img src="https://jis.gov.jm/wp-content/cache/thumbnails/vitae-1200x825-c.jpg" class="card-img-top" alt="man cycling">
+                    <div class="card-body bg-primary">
+                      <h5 class="card-title">National Flower - Lignum Vitae</h5>
+                      <p class="card-text">
+                        The Lignum Vitae, Jamaica's national flower, is a symbol of strength, resilience, and natural beauty. Known for its vibrant purple-blue blossoms and dense, durable wood, the Lignum Vitae holds significant cultural and historical importance in Jamaica. Its name, which translates to "wood of life" in Latin, reflects the tree's traditional medicinal uses, believed to possess healing properties for various ailments. Indigenous to the Caribbean region, the Lignum Vitae thrives in Jamaica's tropical climate, where it serves as both a decorative plant and a source of valuable timber. Beyond its botanical significance, the Lignum Vitae embodies the island's spirit of endurance and vitality, making it a cherished emblem of Jamaica's natural heritage and national identity.
+                      </p>  
+                    </div>
+                  </div>
+            </div>
+
+
+        </section>
+
+        <section id="jamacan-symbols-2" class="row justify-content-evenly align-items-senter">
+
+            <div class="col-md-5 p-0 d-flex align-items-stretch">
+
+                <div class="card">
+                    <img src="https://jis.gov.jm/wp-content/cache/thumbnails/coa-1200x825-c.jpg" class="card-img-top" alt="playing football">
+                    <div class="card-body bg-primary">
+                      <h5 class="card-title">Coat Of Arms</h5>
+                      <p class="card-text">
+                        The Jamaican Coat of Arms stands as a proud emblem of the nation's history, aspirations, and identity. Designed in 1661 during British colonial rule, it underwent various iterations before its current form was officially adopted in 1957. The coat of arms features a shield adorned with a male and female Taino Indian supporter on either side, symbolizing the island's indigenous heritage. Atop the shield sits a royal helmet and mantling, signifying Jamaica's historical ties to the British monarchy. The shield itself displays a red cross with five golden pineapples, representing the island's agricultural richness and its connection to the Commonwealth. Below the shield, a crocodile stands on a grassy mount, denoting Jamaica's indigenous wildlife and lush landscapes. With its blend of indigenous, colonial, and natural elements, the Jamaican Coat of Arms serves as a visual representation of the nation's diverse heritage, unity, and aspirations for the future.
+                    </p> 
+                    </div>
+                  </div>
+
+            </div>
+
+            <div class="col-md-5 p-0 d-flex align-items-stretc">
+
+                <div class="card">
+                    <img src="https://jis.gov.jm/wp-content/cache/thumbnails/ackee1-1200x825-c.jpg" class="card-img-top" alt="man jogging">
+                    <div class="card-body bg-primary">
+                      <h5 class="card-title">National Fruit - Ackee</h5>
+                      <p class="card-text">
+                        Ackee, Jamaica's national fruit, is as much a symbol of the island's natural beauty as it is a culinary delight. Native to West Africa, ackee found its way to the Caribbean during the colonial era, eventually becoming an integral part of Jamaican cuisine. Renowned for its vibrant red pods and creamy yellow flesh, ackee is beloved for its unique flavor and versatility in dishes like the iconic Ackee and Saltfish. Despite its enticing appearance, ackee must be harvested and prepared with care, as improper handling can result in toxicity. As a cultural icon, ackee embodies Jamaica's rich heritage and connection to the land, celebrated in festivals, artwork, and the hearts of Jamaicans worldwide.
+                      </p>  
+                    </div>
+                  </div>
+            </div>
+
+        </section>
+
+        <section id="national-dish" class="row justify-content-center align-items-senter py-8">
+
+            
+            <div class="col-md-7 text-center">
+                <h2 class="display-2 mb-5"><span class="text-primary">National </span><span class="text-third">Dish</span></h2>
+                <img 
+                    class="img-fluid"
+                    src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2F1.bp.blogspot.com%2F-X2ky1wURfq8%2FYDaE6kvDRzI%2FAAAAAAAAeuc%2FuLLKqpA_8f4WaxG5aT8F3v1AoTvV__-XACLcBGAsYHQ%2Fw1200-h630-p-k-no-nu%2FAckee-Salt-Fish.png&f=1&nofb=1&ipt=8fe492a2e96a9cc73b704ba904d460e07a29ab53575e9c32e7fa475fca3b3d34&ipo=images" 
+                    alt=""
+                >
+                <p class="display-6 text-red">Ackee and Saltfish</p>
+                <p class="lead text-li-green">
+                    Ackee and Saltfish stands proudly as Jamaica's national dish, a culinary emblem deeply ingrained in the island's culture and history. Its origins can be traced back to West Africa, where ackee, a tropical fruit, was first cultivated. During the transatlantic slave trade, ackee seeds found their way to the Caribbean, brought by enslaved Africans. In Jamaica, ackee trees flourished in the island's fertile soil, and the fruit became a staple in the local diet.
+                </p>
+                <p class="lead text-li-green">
+                    The dish itself is a delightful combination of ackee fruit and salted codfish, a testament to the island's fusion of African, Indigenous, and European influences. Salted codfish, preserved through a curing process, was introduced to Jamaica by European sailors and traders. The pairing of ackee and saltfish reflects the intersection of diverse culinary traditions, resulting in a harmonious blend of flavors and textures.
+                </p>
+                <p class="lead text-li-green">
+                    To prepare Ackee and Saltfish, salted codfish is soaked to remove excess salt, then flaked and sautéed with onions, tomatoes, bell peppers, and spices such as thyme and Scotch bonnet peppers. The ackee fruit, when ripe, is carefully extracted from its pods, boiled until tender, and added to the seasoned codfish mixture. The dish is cooked until flavors meld, resulting in a savory and aromatic medley that tantalizes the taste buds.
+                </p>
+                <p class="lead text-li-green">
+                    Ackee and Saltfish is not only beloved for its delicious taste but also for its cultural significance. It symbolizes resilience, unity, and the rich tapestry of Jamaica's heritage. Whether enjoyed as a hearty breakfast dish or as part of a festive meal, Ackee and Saltfish remains a cherished culinary tradition, passed down through generations and celebrated as a quintessential expression of Jamaican identity.
+                </p>
+
+                
+            </div>
+
+        </section>
+
+        <section id="pepperpot-soup" class="row justify-content-center align-items-senter py-8">
+
+            
+            <div class="col-md-7 text-center">
+                <h2 class="display-2 mb-5"><span class="text-red">PepperPot </span><span class="text-third">Soup</span></h2>
+                <img 
+                    class="img-fluid rounded-circle"
+                    src="https://www.seriouseats.com/thmb/tQ3YXwzMkvWVDhxBtH_wwJW7Uqg=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/20231128-SEA-Pepperpot-KarinaMatalon-46-3502e5edcb6846fdb922630d8207f810.jpg" 
+                    alt=""
+                >
+                <p class="lead text-li-green">
+                    Jamaican PepperPot Soup is a flavorful and hearty dish deeply rooted in the island's culinary history. Its origins trace back to West Africa, where it was initially prepared by enslaved Africans and brought to Jamaica during the transatlantic slave trade. The dish's name is derived from the Indigenous Amerindian word "pepperpot," which refers to a traditional cooking vessel used for making soups and stews.
+                </p>
+                <p class="lead text-li-green">
+                    The soup is renowned for its rich and complex flavors, blending a variety of ingredients to create a satisfying and nourishing meal. It typically consists of a base of meat, such as beef, pork, or goat, which is simmered with a medley of vegetables and aromatic herbs and spices. Common ingredients include okra, yams, cassava, callaloo (Jamaican spinach), carrots, onions, scallions, thyme, and Scotch bonnet peppers.
+                </p>
+                <p class="lead text-li-green">
+                    One of the key components of Jamaican PepperPot Soup is the use of "ground provisions," which are starchy root vegetables that add depth and texture to the dish. These may include yams, sweet potatoes, and dasheen (also known as taro root), contributing to the soup's thick and hearty consistency.
+                </p>
+                <p class="lead text-li-green">
+                    Over the years, Jamaican PepperPot Soup has become a beloved staple in the island's culinary landscape, enjoyed by locals and visitors alike. It is often served at special occasions, family gatherings, and celebrations, embodying the spirit of Jamaican hospitality and cultural heritage. With its robust flavors and wholesome ingredients, PepperPot Soup continues to hold a special place in Jamaican cuisine, representing a fusion of diverse cultural influences and traditions.
+                </p>
+
+                
+            </div>
+
+        </section>
+
+        <section id="jamaican-foods" class="row justify-content-evenly align-items-senter py-8 m-0">
+
+            <h2 class="display-2 text-center mb-5"><span class="text-third">Iconic</span><span class="text-primary"> Foods Items</span></h2>
+
+            <div class="col-md-3 p-0 d-flex align-items-stretch">
+
+                <div class="card">
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fjuicipattiesfranchising.com%2Fwp-content%2Fuploads%2F2022%2F11%2FEmpanada-Franchise.webp&f=1&nofb=1&ipt=b220f10dbd9b738e3c890a900833f0c04d3d9c111321e7e52d99c1034648044d&ipo=images" class="card-img-top" alt="playing football">
+                    <div class="card-body bg-primary">
+                      <h5 class="card-title">Juici Patties</h5>
+                      <p class="card-text">
+                        Jamaican Juici Patties are iconic savory pastries enjoyed both locally and internationally for their delicious fillings and flaky pastry crusts. Originating from Jamaica, these patties feature a variety of flavorful fillings, including spicy beef, chicken, vegetable, and even seafood options. The filling is seasoned with a blend of aromatic herbs and spices, such as scotch bonnet peppers, thyme, and garlic, creating a bold and satisfying taste. Encased in a golden, buttery pastry crust, Jamaican Juici Patties offer a delightful combination of textures and flavors with each bite. These handheld treats are a popular snack or meal option, enjoyed on the go or as part of a hearty meal, showcasing the rich culinary heritage of Jamaica.
+                    </p> 
+                    </div>
+                  </div>
+
+            </div>
+
+            <div class="col-md-3 p-0 d-flex align-items-stretc">
+
+                <div class="card">
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Flookaside.fbsbx.com%2Flookaside%2Fcrawler%2Fmedia%2F%3Fmedia_id%3D4049106901799610&f=1&nofb=1&ipt=742fe40a6d97358a5e2cd636b321a4f792313fd686b1b011a247d06e1037aa96&ipo=images" class="card-img-top" alt="man jogging">
+                    <div class="card-body bg-primary">
+                      <h5 class="card-title">Jerked Chicken</h5>
+                      <p class="card-text">
+                        Jamaican Jerked Chicken is a quintessential dish renowned for its bold flavors and spicy kick. Originating from Jamaica, this dish involves marinating chicken pieces in a blend of spices, including allspice, thyme, scotch bonnet peppers, garlic, and ginger. The marinated chicken is then traditionally cooked over a pimento wood fire or on a grill, imparting a smoky aroma and charred exterior. The result is tender, juicy chicken infused with a harmonious blend of sweet, savory, and spicy flavors. Jamaican Jerked Chicken is often served with traditional accompaniments like rice and peas, fried plantains, or festival bread, making it a beloved favorite both on the island and around the world.
+                      </p>  
+                    </div>
+                  </div>
+            </div>
+
+            <div class="col-md-3 p-0 d-flex align-items-stretch">
+
+                <div class="card" >
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi0.wp.com%2Flaviebami.com%2Fwp-content%2Fuploads%2F2021%2F04%2Fjamaican-oxtail-rice-peas-6.jpg%3Fresize%3D900%252C632%26ssl%3D1&f=1&nofb=1&ipt=ecfb73394bafa7766d32e103fc73b541384b4e153fbf5b63af309daa4c020ed5&ipo=images" class="card-img-top" alt="man cycling">
+                    <div class="card-body bg-primary">
+                      <h5 class="card-title">Oxtail and Beans</h5>
+                      <p class="card-text">
+                        Jamaican Oxtail and Beans is a hearty and flavorful dish deeply rooted in the island's culinary heritage. This traditional Jamaican recipe features tender oxtail pieces slow-cooked with kidney beans, aromatic spices, and a rich tomato-based sauce. The oxtail is marinated and braised until it becomes melt-in-your-mouth tender, infusing the dish with rich, savory flavors. The addition of beans adds both texture and protein to the dish, while the combination of spices such as thyme, allspice, and scotch bonnet pepper creates a tantalizing taste experience. Served alongside rice and peas or steamed vegetables, Jamaican Oxtail and Beans is a comforting and satisfying meal that embodies the warmth and vibrancy of Jamaican cuisine.
+                      </p>  
+                    </div>
+                  </div>
+            </div>
+
+
+        </section>
+        
+
+        
+        <section id="jamacan-symbols-2" class="row justify-content-evenly align-items-senter">
+
+            <div class="col-md-5 p-0 d-flex align-items-stretch">
+
+                <div class="card">
+                    <img img-fluid rounded-circle src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fyourjamaicantourguide.com%2Fwp-content%2Fuploads%2F2017%2F01%2Fred-strip-beer.jpg&f=1&nofb=1&ipt=f8c7a7a9dd30fa2441fc3821addbcf311bf02ed5668880eec760c96af54fcc7b&ipo=images" class="card-img-top" alt="playing football">
+                    <div class="card-body bg-primary">
+                      <h5 class="card-title">Red Stripe Beer</h5>
+                      <p class="card-text">
+                        Red Stripe Beer is one of Jamaica's most iconic beverages, first brewed in 1928. Recognized by its distinctive stubby brown bottle and red and white label, Red Stripe has become synonymous with Jamaican culture and hospitality. This lager, known for its smooth, slightly sweet flavor and moderate alcohol content, has gained international acclaim, making it a popular choice among beer enthusiasts worldwide. Brewed using high-quality ingredients such as malted barley, hops, and water, Red Stripe delivers a refreshing taste that perfectly complements the tropical climate of Jamaica.
+                    </p> 
+                    <p class="card-text">
+                        In addition to the classic Red Stripe lager, the brand has expanded its product line to include a variety of innovative flavors. Red Stripe Sorrel, infused with the traditional holiday flavor of sorrel, offers a unique blend of the beer's signature taste with a hint of fruity spice. Red Stripe Lemon Paradise and Red Stripe Melon are other popular variations that infuse the original lager with a burst of citrus and melon flavors, respectively. These creative adaptations cater to diverse palates and enhance the brand's appeal, maintaining Red Stripe's reputation as a beloved symbol of Jamaican ingenuity and flavor.
+                    </p>
+                    </div>
+                  </div>
+
+            </div>
+
+            <div class="col-md-5 p-0 d-flex align-items-stretc">
+
+                <div class="card">
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.productsfromjamaica.com%2Fwp-content%2Fuploads%2FWalkerswood_samplers_pack1.jpg&f=1&nofb=1&ipt=6c879d7a44b2b4dca87039ccfe8d7faf45d52bc41d4ae7a45b6b655ebcb51781&ipo=images" class="card-img-top" alt="man jogging">
+                    <div class="card-body bg-primary">
+                      <h5 class="card-title">Walkerswood Jerk Seasoning</h5>
+                      <p class="card-text">
+                        Walkerswood Jerk Seasoning is a renowned Jamaican culinary product that captures the authentic flavors of traditional jerk cooking. Originating from the small village of Walkerswood in the parish of St. Ann, this seasoning blend combines a variety of local ingredients such as Scotch bonnet peppers, pimento (allspice), scallions, and thyme. The result is a spicy, aromatic mixture that embodies the essence of Jamaican cuisine. Walkerswood Jerk Seasoning is versatile and can be used to marinate chicken, pork, fish, and even vegetables, imparting a distinctive smoky heat that is beloved by food enthusiasts worldwide.
+                      </p>  
+                      <p class="card-text">
+                        The popularity of Walkerswood Jerk Seasoning has grown significantly since its inception in the 1970s. It not only serves as a culinary ambassador for Jamaica, introducing the island's vibrant flavors to international kitchens but also supports local agriculture and businesses. The seasoning is made using traditional methods and locally sourced ingredients, ensuring high quality and authenticity. For many, Walkerswood Jerk Seasoning is a staple in their pantry, bringing the taste of Jamaica's rich culinary heritage to their dining tables.
+                      </p>
+                    </div>
+                  </div>
+            </div>
+
+        </section>
+
+        <section id="pepperpot-soup" class="row justify-content-center align-items-senter py-8">
+
+            
+            <div class="col-md-7 text-center">
+                <h2 class="display-2 mb-5"><span class="text-red">Jelly Water and </span><span class="text-third">Sugar Cane</span></h2>
+                <img 
+                    class="img-fluid rounded-circle"
+                    src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Fec%2F5c%2F73%2Fec5c736302f7db63554e790fc2f70420.jpg&f=1&nofb=1&ipt=08e2f7eecf058bed0c6850d76c653de4a55a4ced9018b099a9d7446449e9b261&ipo=images" 
+                    alt=""
+                >
+                <p class="lead text-li-green">
+                    Jamaican jelly water, derived from young green coconuts, is a refreshing and hydrating beverage cherished across the island. The clear, slightly sweet liquid is rich in electrolytes, making it an ideal thirst quencher in the tropical climate. Locals and visitors alike enjoy jelly water for its natural taste and health benefits, which include aiding digestion, boosting the immune system, and replenishing lost nutrients. The soft, jelly-like meat inside the coconut can also be scooped out and eaten, adding to the appeal of this natural treat.
+                </p>
+                <p class="lead text-li-green">
+                    Sugar cane, another iconic Jamaican staple, has played a significant role in the island's history and economy. The tall, sturdy stalks of sugar cane are cultivated extensively and can be enjoyed fresh by peeling and chewing to extract the sweet juice. Besides its use as a raw snack, sugar cane juice is also a key ingredient in traditional Jamaican drinks and sweets. Additionally, sugar cane's by-products are essential in the production of rum, one of Jamaica's most famous exports. The cultivation and enjoyment of sugar cane continue to be a vibrant part of Jamaican culture and heritage.
+                </p>
+
+                
+            </div>
+
+        </section>
+
+        <section id="sports" class="row p-0 justify-content-center">
+
+            <h2 class="display-2 mb-5 text-center"><span class="text-third">Sports</span></h2>
+
+            <div class="col-md-4 p-0 d-flex align-items-stretch">
+
+                <div class="card">
+                    <img src="https://cdn.shopify.com/s/files/1/1131/1046/files/Jamaican_National_Football_Team.jpg?v=1675656425"" class="card-img-top" alt="playing football">
+                    <div class="card-body bg-primary">
+                      <h5 class="card-title">Reggae Boys</h5>
+                      <p class="card-text">
+
+                        Jamaica made its debut at the 1998 FIFA World Cup in France, becoming the first Caribbean nation to qualify for the tournament. Although they lost all three group stage matches to Croatia, Argentina, and Japan, their participation was celebrated in Jamaica and marked a significant shift in the country's attitude towards football. This achievement inspired a new generation of Jamaican players.
+
+                        Jamaican football is also influenced by the country's rich musical culture, with reggae music playing a significant role. Famous reggae artists, including Bob Marley, were avid football fans, and the sport features prominently in their music.
+
+                        Today, football remains a major part of Jamaican culture and society, with many local communities fielding their own teams and competing in regional leagues. The sport continues to be a source of pride and national unity, with passionate support from Jamaican fans regardless of the results.                         
+                    </p> 
+                    </div>
+                  </div>
+
+            </div>
+
+            <div class="col-md-4 p-0 d-flex align-items-stretch">
+
+                <div class="card">
+                    <img src="https://digitalhub.fifa.com/transform/6ced4e45-2911-4da4-bdb2-9b4d90d5a975/Jamaica-Women-s-team-2019-Women-s-World-Cup-Australia?io=transform:fill,width:1024&quality=75" class="card-img-top" alt="man jogging">
+                    <div class="card-body bg-primary">
+                      <h5 class="card-title">Reggae Girls</h5>
+                      <p class="card-text">
+                        
+                            The Jamaican Reggae Girlz are the national women's football team of Jamaica. They made history by qualifying for their first FIFA Women's World Cup in 2019, becoming the first Caribbean team to do so. The team is known for their resilience, skill, and the significant role they play in promoting women's football in Jamaica. Their success has inspired many young girls in the country to pursue the sport.
+                      </p>  
+                      <p class="card-text">
+                        The Jamaican Reggae Girlz have faced numerous challenges, including limited funding and resources. Despite these obstacles, they have shown remarkable determination and spirit, earning widespread support from fans and the Jamaican diaspora. Their achievements have brought increased attention to women's football in Jamaica, helping to foster greater opportunities and support for future generations of female athletes. The Reggae Girlz continue to symbolize hope, strength, and the power of sport to unite and inspire.
+                      </p>
+                    </div>
+                  </div>
+            </div>
+
+            <div class="col-md-4 p-0 d-flex align-items-stretch">
+
+                <div class="card" >
+                    <img src="https://www.caribbeannationalweekly.com/wp-content/uploads/2022/08/jamaica-netball-commonwealth-games-sunshine-girls-696x391.jpg" class="card-img-top" alt="man cycling">
+                    <div class="card-body bg-primary">
+                      <h5 class="card-title">Sunshine Girls</h5>
+                      <p class="card-text">
+                        The Jamaican Sunshine Girls are the national netball team of Jamaica, renowned for their prowess and competitive spirit on the international stage. Netball, a sport predominantly played by women, is immensely popular in Jamaica, and the Sunshine Girls have become icons in the country. The team has consistently performed well in major tournaments, such as the Netball World Cup and the Commonwealth Games, often finishing in the top four. Their agility, speed, and teamwork have earned them a reputation as one of the world's leading netball teams, competing fiercely against traditional powerhouses like Australia, New Zealand, and England.
+                      </p>
+                      <p class="card-text">
+                        Off the court, the Sunshine Girls are celebrated for their role in inspiring young athletes and promoting netball across Jamaica. Their success has fueled the sport's popularity, encouraging increased participation at the grassroots level. The team's players, many of whom have become local celebrities, serve as role models, demonstrating the values of dedication, discipline, and teamwork. The Jamaican Sunshine Girls' journey reflects the nation's passion for netball and their enduring commitment to achieving excellence on the international stage.
+                      </p>
+                    </div>
+                  </div>
+            </div>
+
+            <div class="col-md-8 p-0 d-flex align-items-stretch">
+
+                <div class="card">
+                    <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fa.espncdn.com%2Fphoto%2F2012%2F0811%2Foly_a_jamaica_relay_wr_b1_600.jpg&f=1&nofb=1&ipt=9d34f677c0f285481f4501d17efb5cf02e86fed7c04db3a16426df39a5888164&ipo=images" class="card-img-top" alt="man cycling">
+                    <div class="card-body bg-primary">
+                      <h5 class="card-title">Track and Field</h5>
+                      <p class="card-text">
+
+                        At the 2012 London Olympics, Jamaica's men's 4x100m relay team delivered a stunning performance to secure the gold medal, setting a new world record in the process. The team, composed of Nesta Carter, Michael Frater, Yohan Blake, and the legendary Usain Bolt, completed the race in a remarkable time of 36.84 seconds. Their seamless baton exchanges and explosive speed left their competitors trailing behind, underscoring Jamaica's dominance in sprinting events. Usain Bolt, anchoring the team, crossed the finish line with his signature flair, solidifying his status as one of the greatest sprinters of all time.
+                      </p>  
+                      <p class="card-text">
+                        This victory was a moment of immense pride for Jamaica, showcasing the country's exceptional talent in track and field. The win not only highlighted the athletes' individual brilliance but also demonstrated their ability to work together as a cohesive unit under pressure. Jamaica's triumph in the men's 4x100m relay at the 2012 Olympics remains a celebrated achievement, reflecting the nation's strong tradition in sprinting and inspiring future generations of Jamaican athletes.
+                      </p>
+                    </div>
+                  </div>
+            </div>
 
         </section>
 
         
     </main>
 
-
+    
     <footer class="row bg-green py-5 text-center">
 
         <div class="col-sm-4 order-2 order-sm-1">
@@ -240,7 +746,7 @@
             renderer: 'svg',
             loop: true,
             autoplay: true,
-            path: './arrow_down_lottie.json' // Example path to Lottie JSON
+            path: './arrow_down_lottie.json'
         });
     </script>
 
