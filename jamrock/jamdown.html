@@ -36,6 +36,52 @@
 
                 const national_anthem_modal = document.getElementById('national-anthem-modal');
 
+                let must_see_places = {
+                    'Dunn\'s River': {
+                        'img_src':'https://a.travel-assets.com/findyours-php/viewfinder/images/res70/60000/60310-Dunns-River-Falls.jpg',
+                        'text': "Dunn's River Falls, located near Ocho Rios in Jamaica, is one of the island's most popular natural attractions. Tourists can experience the thrill of climbing the terraced waterfalls, which cascade 600 feet down to the beach below. The guided climbs allow visitors to form human chains as they navigate the falls, creating a unique and communal adventure. Besides the falls, visitors can enjoy the lush tropical landscape, picnic areas, and the beach at the base of the falls. The park also offers activities like zip-lining, snorkeling, and exploring the local craft market, making Dunn's River Falls a versatile destination for adventure, relaxation, and cultural immersion."
+                    },
+
+                    'Mystic Mountain': {
+                        'img_src': 'https://a.travel-assets.com/findyours-php/viewfinder/images/res70/110000/110073-Ocho-Rios.jpg',
+                        'text': "Mystic Mountain, located in Ocho Rios, Jamaica, offers a variety of exhilarating activities set against the lush backdrop of the island's tropical rainforest. Visitors can experience the SkyExplorer, a chairlift that provides breathtaking views as it ascends to the mountain's peak. At the top, adventure seekers can enjoy the famous bobsled ride, inspired by Jamaica's Olympic team, as well as the thrilling zipline course. The Rainforest Adventures facility also features a hummingbird and butterfly garden, a waterslide, and an infinity pool. Mystic Mountain combines natural beauty with adventure, making it a must-visit attraction for both thrill-seekers and nature lovers.",
+                    },
+
+                    'Rick\'s Cafe': {
+                        'img_src': 'https://www.negrilonestop.com/img/Places/IMG_4289.JPG',
+                        'text': "Rick's Cafe in Negril, Jamaica, is a renowned spot that offers a blend of adventure, entertainment, and relaxation. Established in 1974, it has become famous for its breathtaking cliff diving, where visitors can take exhilarating leaps into the crystal-clear Caribbean Sea from various heights. The cafe also boasts live reggae performances that capture the island's vibrant musical culture, making it a lively venue to enjoy with friends and family. Visitors can indulge in delicious Jamaican cuisine, including jerk chicken, seafood, and tropical cocktails, all while taking in stunning sunset views that make Rick's Cafe a must-visit destination in Negril.",
+                    },
+                    'YS Falls': {
+                        'img_src': 'https://ysfalls.com/wp-content/uploads/2022/07/Rectangle-32.png',
+                        'text': "YS Falls, located in the heart of Jamaica's St. Elizabeth parish, is a natural wonder featuring a series of seven cascading waterfalls surrounded by lush vegetation. Visitors can swim in the refreshing natural pools, swing into the water from a rope, or relax on the river's banks. The site also offers ziplining for a bird's-eye view of the falls and the surrounding landscape. YS Falls is a family-friendly destination with picnic areas, beautifully landscaped gardens, and a welcome center that provides amenities and information. It's an ideal spot for nature lovers and those looking to experience the serene beauty of Jamaica's countryside.",
+                    }
+                }
+                
+                // get all the must see li elements
+                let must_see_links = document.querySelectorAll('.must-see');
+
+                // get the must see display elements
+                let must_see_img = document.querySelector('.must-see-img');
+                let must_see_title = document.querySelector('.must-see-title');
+                let must_see_text = document.querySelector('.must-see-text');
+
+
+                for (let i = 0; i < must_see_links.length; i++) {
+                    let must_see_link = must_see_links[i];
+
+                    must_see_link.addEventListener('click', function(e) {
+
+                        must_see_img.setAttribute('src', must_see_places[must_see_link.innerHTML]['img_src']);
+
+                        must_see_img.setAttribute('alt', must_see_places[must_see_link.innerHTML]['img_src']);
+
+                        must_see_title.innerHTML = must_see_link.innerHTML;
+
+                        must_see_text.innerHTML = must_see_places[must_see_link.innerHTML]['text'];
+                       
+                    });
+                }
+
 
                 /*
                     Track when user scrolls window to trigger the popout 
@@ -284,7 +330,7 @@
                     <p class="px-4 text-dark">
                         Jamaican tourism offers a wide array of attractions and activities, making it a popular destination for travelers. The island boasts stunning beaches, such as those in Negril and Montego Bay, where visitors can enjoy sunbathing, swimming, and water sports. Jamaica is also famous for its lush landscapes, including the Blue Mountains, ideal for hiking and coffee tours. Cultural experiences abound in cities like Kingston, home to the Bob Marley Museum and vibrant nightlife. Adventure seekers can explore waterfalls, such as Dunn's River Falls, and go rafting on the Martha Brae River. With its rich cultural heritage, natural beauty, and warm hospitality, Jamaica provides a memorable travel experience for all types of tourists.
                     </p>
-                    <a href="#" class="btn btn-dark btn-lg mb-3 text-uppercase">Tour</a>
+                    <a href="#adventure-tour" class="btn btn-dark btn-lg mb-3 text-uppercase">Tour</a>
                 </div>
 
             </div>
@@ -337,8 +383,8 @@
 
             </div>
 
-            <div class="col-xxl-4 text-end">
-                <img class="img-fluid" src="https://cdn.pixabay.com/photo/2015/03/14/18/29/jamaica-673591_960_720.png" alt="jamaican flag thumbs up">
+            <div class="col-xxl-4 text-end scaled-image-overflow">
+                <img class="img-fluid scaled-image" src="https://cdn.pixabay.com/photo/2015/03/14/18/29/jamaica-673591_960_720.png" alt="jamaican flag thumbs up">
             </div>
             
         </section>
@@ -400,10 +446,10 @@
 
             <h2 class="display-2 text-center mb-5"><span class="text-third">National</span><span class="text-primary"> Symbols</span></h2>
 
-            <div class="col-xl-3 p-0 d-flex align-items-stretch">
+            <div class="col-xl-3 p-0 d-flex align-items-stretch scaled-image-overflow">
 
                 <div class="card">
-                    <img src="https://jis.gov.jm/wp-content/cache/thumbnails/bird-1200x825-c.jpg" class="card-img-top" alt="playing football">
+                    <img src="https://jis.gov.jm/wp-content/cache/thumbnails/bird-1200x825-c.jpg" class="card-img-top scaled-image" alt="national bird">
                     <div class="card-body bg-primary">
                       <h5 class="card-title px-3">National Bird - Doctor Bird</h5>
                       <p class="card-text px-3">
@@ -414,10 +460,10 @@
 
             </div>
 
-            <div class="col-xl-3 p-0 d-flex align-items-stretc">
+            <div class="col-xl-3 p-0 d-flex align-items-stretc scaled-image-overflow">
 
                 <div class="card">
-                    <img src="https://jis.gov.jm/wp-content/cache/thumbnails/tree-1200x825-c.jpg" class="card-img-top" alt="man jogging">
+                    <img src="https://jis.gov.jm/wp-content/cache/thumbnails/tree-1200x825-c.jpg" class="card-img-top scaled-image" alt="national tree">
                     <div class="card-body bg-primary">
                       <h5 class="card-title px-3">National Tree - Blue Mahoe</h5>
                       <p class="card-text px-3">
@@ -427,10 +473,10 @@
                   </div>
             </div>
 
-            <div class="col-xl-3 p-0 d-flex align-items-stretch">
+            <div class="col-xl-3 p-0 d-flex align-items-stretch scaled-image-overflow">
 
                 <div class="card" >
-                    <img src="https://jis.gov.jm/wp-content/cache/thumbnails/vitae-1200x825-c.jpg" class="card-img-top" alt="man cycling">
+                    <img src="https://jis.gov.jm/wp-content/cache/thumbnails/vitae-1200x825-c.jpg" class="card-img-top scaled-image" alt="national flower">
                     <div class="card-body bg-primary">
                       <h5 class="card-title px-3">National Flower - Lignum Vitae</h5>
                       <p class="card-text px-3">
@@ -445,10 +491,10 @@
 
         <section id="jamacan-symbols-2" class="row justify-content-evenly align-items-senter py-8">
 
-            <div class="col-md-5 p-0 d-flex align-items-stretch">
+            <div class="col-md-5 p-0 d-flex align-items-stretch scaled-image-overflow">
 
                 <div class="card">
-                    <img src="https://jis.gov.jm/wp-content/cache/thumbnails/coa-1200x825-c.jpg" class="card-img-top" alt="playing football">
+                    <img src="https://jis.gov.jm/wp-content/cache/thumbnails/coa-1200x825-c.jpg" class="card-img-top scaled-image" alt="coat of arms">
                     <div class="card-body bg-primary">
                       <h5 class="card-title px-3">Coat Of Arms</h5>
                       <p class="card-text px-3">
@@ -459,10 +505,10 @@
 
             </div>
 
-            <div class="col-md-5 p-0 d-flex align-items-stretc">
+            <div class="col-md-5 p-0 d-flex align-items-stretc scaled-image-overflow">
 
                 <div class="card">
-                    <img src="https://jis.gov.jm/wp-content/cache/thumbnails/ackee1-1200x825-c.jpg" class="card-img-top" alt="man jogging">
+                    <img src="https://jis.gov.jm/wp-content/cache/thumbnails/ackee1-1200x825-c.jpg" class="card-img-top scaled-image" alt="national fruit">
                     <div class="card-body bg-primary">
                       <h5 class="card-title px-3">National Fruit - Ackee</h5>
                       <p class="card-text px-3">
@@ -482,7 +528,7 @@
                 <img 
                     class="img-fluid"
                     src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2F1.bp.blogspot.com%2F-X2ky1wURfq8%2FYDaE6kvDRzI%2FAAAAAAAAeuc%2FuLLKqpA_8f4WaxG5aT8F3v1AoTvV__-XACLcBGAsYHQ%2Fw1200-h630-p-k-no-nu%2FAckee-Salt-Fish.png&f=1&nofb=1&ipt=8fe492a2e96a9cc73b704ba904d460e07a29ab53575e9c32e7fa475fca3b3d34&ipo=images" 
-                    alt=""
+                    alt="ackee and saltfish - national dish"
                 >
                 <p class="display-6 text-red">Ackee and Saltfish</p>
                 <p class="lead text-li-green">
@@ -535,10 +581,10 @@
 
             <h2 class="display-2 text-center mb-5"><span class="text-third">Iconic</span><span class="text-primary"> Foods Items</span></h2>
 
-            <div class="col-md-3 p-0 d-flex align-items-stretch">
+            <div class="col-md-3 p-0 d-flex align-items-stretch scaled-image-overflow">
 
                 <div class="card">
-                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fjuicipattiesfranchising.com%2Fwp-content%2Fuploads%2F2022%2F11%2FEmpanada-Franchise.webp&f=1&nofb=1&ipt=b220f10dbd9b738e3c890a900833f0c04d3d9c111321e7e52d99c1034648044d&ipo=images" class="card-img-top" alt="playing football">
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fjuicipattiesfranchising.com%2Fwp-content%2Fuploads%2F2022%2F11%2FEmpanada-Franchise.webp&f=1&nofb=1&ipt=b220f10dbd9b738e3c890a900833f0c04d3d9c111321e7e52d99c1034648044d&ipo=images" class="card-img-top scaled-image" alt="playing football">
                     <div class="card-body bg-primary">
                       <h5 class="card-title px-3">Juici Patties</h5>
                       <p class="card-text px-3">
@@ -549,10 +595,10 @@
 
             </div>
 
-            <div class="col-md-3 p-0 d-flex align-items-stretc">
+            <div class="col-md-3 p-0 d-flex align-items-stretc scaled-image-overflow">
 
                 <div class="card">
-                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Flookaside.fbsbx.com%2Flookaside%2Fcrawler%2Fmedia%2F%3Fmedia_id%3D4049106901799610&f=1&nofb=1&ipt=742fe40a6d97358a5e2cd636b321a4f792313fd686b1b011a247d06e1037aa96&ipo=images" class="card-img-top" alt="man jogging">
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Flookaside.fbsbx.com%2Flookaside%2Fcrawler%2Fmedia%2F%3Fmedia_id%3D4049106901799610&f=1&nofb=1&ipt=742fe40a6d97358a5e2cd636b321a4f792313fd686b1b011a247d06e1037aa96&ipo=images" class="card-img-top scaled-image" alt="man jogging">
                     <div class="card-body bg-primary">
                       <h5 class="card-title px-3">Jerked Chicken</h5>
                       <p class="card-text px-3">
@@ -562,10 +608,10 @@
                   </div>
             </div>
 
-            <div class="col-md-3 p-0 d-flex align-items-stretch">
+            <div class="col-md-3 p-0 d-flex align-items-stretch scaled-image-overflow">
 
                 <div class="card" >
-                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi0.wp.com%2Flaviebami.com%2Fwp-content%2Fuploads%2F2021%2F04%2Fjamaican-oxtail-rice-peas-6.jpg%3Fresize%3D900%252C632%26ssl%3D1&f=1&nofb=1&ipt=ecfb73394bafa7766d32e103fc73b541384b4e153fbf5b63af309daa4c020ed5&ipo=images" class="card-img-top" alt="man cycling">
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi0.wp.com%2Flaviebami.com%2Fwp-content%2Fuploads%2F2021%2F04%2Fjamaican-oxtail-rice-peas-6.jpg%3Fresize%3D900%252C632%26ssl%3D1&f=1&nofb=1&ipt=ecfb73394bafa7766d32e103fc73b541384b4e153fbf5b63af309daa4c020ed5&ipo=images" class="card-img-top scaled-image" alt="man cycling">
                     <div class="card-body bg-primary">
                       <h5 class="card-title px-3">Oxtail and Beans</h5>
                       <p class="card-text px-3">
@@ -582,10 +628,10 @@
         
         <section id="jamacan-foods-2" class="row justify-content-evenly align-items-senter mt-5">
 
-            <div class="col-md-5 p-0 d-flex align-items-stretch">
+            <div class="col-md-5 p-0 d-flex align-items-stretch scaled-image-overflow">
 
                 <div class="card">
-                    <img img-fluid rounded-circle src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fyourjamaicantourguide.com%2Fwp-content%2Fuploads%2F2017%2F01%2Fred-strip-beer.jpg&f=1&nofb=1&ipt=f8c7a7a9dd30fa2441fc3821addbcf311bf02ed5668880eec760c96af54fcc7b&ipo=images" class="card-img-top" alt="playing football">
+                    <img img-fluid rounded-circle src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fyourjamaicantourguide.com%2Fwp-content%2Fuploads%2F2017%2F01%2Fred-strip-beer.jpg&f=1&nofb=1&ipt=f8c7a7a9dd30fa2441fc3821addbcf311bf02ed5668880eec760c96af54fcc7b&ipo=images" class="card-img-top scaled-image" alt="playing football">
                     <div class="card-body bg-primary">
                       <h5 class="card-title px-3">Red Stripe Beer</h5>
                       <p class="card-text px-3">
@@ -599,10 +645,10 @@
 
             </div>
 
-            <div class="col-md-5 p-0 d-flex align-items-stretc">
+            <div class="col-md-5 p-0 d-flex align-items-stretc scaled-image-overflow">
 
                 <div class="card">
-                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.productsfromjamaica.com%2Fwp-content%2Fuploads%2FWalkerswood_samplers_pack1.jpg&f=1&nofb=1&ipt=6c879d7a44b2b4dca87039ccfe8d7faf45d52bc41d4ae7a45b6b655ebcb51781&ipo=images" class="card-img-top" alt="man jogging">
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.productsfromjamaica.com%2Fwp-content%2Fuploads%2FWalkerswood_samplers_pack1.jpg&f=1&nofb=1&ipt=6c879d7a44b2b4dca87039ccfe8d7faf45d52bc41d4ae7a45b6b655ebcb51781&ipo=images" class="card-img-top scaled-image" alt="man jogging">
                     <div class="card-body bg-primary">
                       <h5 class="card-title px-3">Walkerswood Jerk Seasoning</h5>
                       <p class="card-text px-3">
@@ -623,9 +669,9 @@
             <div class="col-md-7 text-center px-4">
                 <h2 class="display-2 mb-5"><span class="text-red">Jelly Water and </span><span class="text-third">Sugar Cane</span></h2>
                 <img 
-                    class="img-fluid rounded-circle mb-3"
+                    class="img-fluid rounded-circle mb-3 "
                     src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Fec%2F5c%2F73%2Fec5c736302f7db63554e790fc2f70420.jpg&f=1&nofb=1&ipt=08e2f7eecf058bed0c6850d76c653de4a55a4ced9018b099a9d7446449e9b261&ipo=images" 
-                    alt=""
+                    alt="jelly water and sugar cane"
                 >
                 <p class="lead text-li-green py-3">
                     Jamaican jelly water, derived from young green coconuts, is a refreshing and hydrating beverage cherished across the island. The clear, slightly sweet liquid is rich in electrolytes, making it an ideal thirst quencher in the tropical climate. Locals and visitors alike enjoy jelly water for its natural taste and health benefits, which include aiding digestion, boosting the immune system, and replenishing lost nutrients. The soft, jelly-like meat inside the coconut can also be scooped out and eaten, adding to the appeal of this natural treat.
@@ -643,10 +689,12 @@
 
             <h2 class="display-2 mb-5 text-center"><span class="text-third">Sports</span></h2>
 
-            <div class="col-md-4 p-0 d-flex align-items-stretch">
+            <div class="col-md-4 p-0 d-flex align-items-stretch scaled-image-overflow">
 
                 <div class="card">
-                    <img src="https://cdn.shopify.com/s/files/1/1131/1046/files/Jamaican_National_Football_Team.jpg?v=1675656425"" class="card-img-top" alt="playing football">
+                    <img src="https://cdn.shopify.com/s/files/1/1131/1046/files/Jamaican_National_Football_Team.jpg?v=1675656425"" 
+                    class="card-img-top scaled-image" alt="playing football">
+
                     <div class="card-body bg-primary">
                       <h5 class="card-title px-3">Reggae Boys</h5>
                       <p class="card-text px-3">
@@ -664,10 +712,12 @@
 
             </div>
 
-            <div class="col-md-4 p-0 d-flex align-items-stretch">
+            <div class="col-md-4 p-0 d-flex align-items-stretch scaled-image-overflow">
 
                 <div class="card">
-                    <img src="https://digitalhub.fifa.com/transform/6ced4e45-2911-4da4-bdb2-9b4d90d5a975/Jamaica-Women-s-team-2019-Women-s-World-Cup-Australia?io=transform:fill,width:1024&quality=75" class="card-img-top" alt="man jogging">
+                    <img src="https://digitalhub.fifa.com/transform/6ced4e45-2911-4da4-bdb2-9b4d90d5a975/Jamaica-Women-s-team-2019-Women-s-World-Cup-Australia?io=transform:fill,width:1024&quality=75" 
+                    class="card-img-top scaled-image" alt="man jogging">
+
                     <div class="card-body bg-primary">
                       <h5 class="card-title px-3">Reggae Girls</h5>
                       <p class="card-text px-3">
@@ -681,10 +731,10 @@
                   </div>
             </div>
 
-            <div class="col-md-4 p-0 d-flex align-items-stretch">
+            <div class="col-md-4 p-0 d-flex align-items-stretch scaled-image-overflow">
 
                 <div class="card" >
-                    <img src="https://www.caribbeannationalweekly.com/wp-content/uploads/2022/08/jamaica-netball-commonwealth-games-sunshine-girls-696x391.jpg" class="card-img-top" alt="man cycling">
+                    <img src="https://www.caribbeannationalweekly.com/wp-content/uploads/2022/08/jamaica-netball-commonwealth-games-sunshine-girls-696x391.jpg" class="card-img-top scaled-image" alt="man cycling">
                     <div class="card-body bg-primary">
                       <h5 class="card-title px-3">Sunshine Girls</h5>
                       <p class="card-text px-3">
@@ -697,10 +747,14 @@
                   </div>
             </div>
 
-            <div class="col-md-8 p-0 d-flex align-items-stretch">
+            <div class="col-md-8 p-0 d-flex align-items-stretch scaled-image-overflow">
 
                 <div class="card">
-                    <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fa.espncdn.com%2Fphoto%2F2012%2F0811%2Foly_a_jamaica_relay_wr_b1_600.jpg&f=1&nofb=1&ipt=9d34f677c0f285481f4501d17efb5cf02e86fed7c04db3a16426df39a5888164&ipo=images" class="card-img-top" alt="man cycling">
+                    <img 
+                        src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fa.espncdn.com%2Fphoto%2F2012%2F0811%2Foly_a_jamaica_relay_wr_b1_600.jpg&f=1&nofb=1&ipt=9d34f677c0f285481f4501d17efb5cf02e86fed7c04db3a16426df39a5888164&ipo=images" 
+                        class="card-img-top scaled-image" 
+                        alt="man cycling"
+                    >
                     <div class="card-body bg-primary">
                       <h5 class="card-title px-3">Track and Field</h5>
                       <p class="card-text px-3">
@@ -712,6 +766,53 @@
                       </p>
                     </div>
                   </div>
+            </div>
+
+        </section>
+
+
+        <section id="adventure-tour" class="row py-8 justify-content-center align-items-center">
+
+            <div class="text-center mb-5">
+                <h2 class="display-2"><span class="text-third">Adventure/Tour</span></h2>
+            </div>
+
+            <div class="col-md-4 links text-light" style="margin-top: 100px;">
+                <ul class="centered-list">
+                    <li class="fw-bolder must-see">Dunn's River</li>
+                    <li class="fw-bolder must-see">Mystic Mountain</li>
+                    <li class="fw-bolder must-see">Rick's Cafe</li>
+                    <li class="fw-bolder must-see">YS Falls</li>
+                </ul>
+            </div>
+
+            <div class="col-md-7 text-center mt-5 scaled-image-overflow">
+
+                <img class="img-fluid rounded must-see-img scaled-image" src="https://a.travel-assets.com/findyours-php/viewfinder/images/res70/60000/60310-Dunns-River-Falls.jpg" alt="dunn's river">
+                <h3 class="must-see-title mt-4 text-li-green">Dunn's River</h3>
+                <p class="must-see-text text-li-green mt-3 px-3">
+                    Dunn's River Falls, located near Ocho Rios in Jamaica, is one of the island's most popular natural attractions. Tourists can experience the thrill of climbing the terraced waterfalls, which cascade 600 feet down to the beach below. The guided climbs allow visitors to form human chains as they navigate the falls, creating a unique and communal adventure. Besides the falls, visitors can enjoy the lush tropical landscape, picnic areas, and the beach at the base of the falls. The park also offers activities like zip-lining, snorkeling, and exploring the local craft market, making Dunn's River Falls a versatile destination for adventure, relaxation, and cultural immersion.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <section id="music" class="row justify-content-center align-items-center mb-6">
+            <h2 class="display-2 text-center"><span class="text-third">Music</span></h2>
+
+            <div class="col-md-7 text-center">
+                <img 
+                    class="img-fluid rounded-circle mb-3"
+                    src="https://cdn.pixabay.com/photo/2022/09/11/19/04/bob-marley-7447761_960_720.jpg" 
+                    alt="bob marley"
+                >
+                <h3>Bob Marley</h3>
+                <p class="text-li-green p-4">
+                    Reggae is a cornerstone of Jamaican culture, embodying the island's rich musical heritage and social consciousness. Emerging in the late 1960s from genres like ska and rocksteady, reggae is characterized by its distinctive offbeat rhythm and deep basslines. The music often addresses themes of social justice, love, and resilience, reflecting the struggles and aspirations of the Jamaican people. Icons like <a href="https://www.bobmarleymuseum.com/" target="_blank"><span class="fw-bolder">Bob Marley</span></a>, Peter Tosh, and Bunny Wailer brought reggae to international prominence, making it a global symbol of peace and resistance. Today, reggae continues to influence music worldwide and remains a vital part of Jamaica's identity, celebrated for its profound cultural and historical significance.
+                </p>
+                <a href="./music.html" class="btn btn-primary btn-lg">Explore Music</a>
             </div>
 
         </section>

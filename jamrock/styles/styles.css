@@ -585,6 +585,24 @@ dl {
 }
 
 
+.scaled-image-overflow {
+    overflow: hidden; /* prevent scaled images from spilling out containers*/
+}
+
+.scaled-image{
+    
+    width: 100%;
+    /*flex-grow: 1;
+    object-fit:cover;*/
+    transition: transform 0.3s ease-in-out; /* Smooth transition */
+}
+
+img.scaled-image:hover{
+    transform: scale(1.1);
+}
+
+
+
 main #national-flag .jaflag{
     max-height: 300px;
 }
@@ -655,11 +673,43 @@ main #national-flag .jaflag{
 }
 
 
+#adventure-tour ul > li{
+    list-style-type: none;
+    display: inline;
+    width: 200px;
+    height: 50px;
+    padding: 5px;
+    cursor: pointer;
+    background-color: var(--secondary-color);
+}
+
+#adventure-tour ul > li:hover{
+    color: var(--gold-color);
+    background-color: var(--primary-color);
+}
+
+
+
+#adventure-tour{
+    position: relative;
+}
+
+#adventure-tour .links{
+    position: absolute; 
+    top:15%;
+    left: 5%;
+   
+}
+
+
  /* Hide video on screens smaller than 768px */
  @media (max-width: 768px) {
     .video-background {
         display: none;
     }
+
+
+
 }
 
 
@@ -671,6 +721,18 @@ main #national-flag .jaflag{
 {
     #highlights{
         margin-top: -100px;
+    }
+}
+
+
+/* only display ul li items for adventure section in block style
+at large screen sizes */
+@media (min-width: 1450px) 
+{
+    #adventure-tour ul > li{
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
 
