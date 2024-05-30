@@ -281,6 +281,10 @@ header section div h1.text-primary{
     element styles start
     **********************************************
 */
+a{
+    text-decoration: none;
+}
+
 h3{
     color: var(--red-color) !important;
 }
@@ -465,6 +469,16 @@ dl {
     Jamdown styles start
     **********************************************
 */
+#jamaican-foods a, 
+#jamacan-foods-2 a{
+    font-weight: bolder;
+    color:  var(--red-color);
+}
+
+#jamaican-foods a:hover, 
+#jamacan-foods-2 a:hover{
+    color: var(--medium-green-color);
+}
 
 .video-background {
     position: relative;
@@ -634,7 +648,7 @@ main #national-flag .jaflag{
 }
 
 
-
+/* group selector*/
 #national-anthem .modal-dialog, 
 #national-anthem .modal-content{
     height: 70%;
