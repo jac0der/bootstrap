@@ -125,20 +125,6 @@ footer a:hover{
 
 
 /*
-    General styles start
-    **********************************************
-*/
-.helpp{
-    cursor:help;
-}
-/*
-    General styles end
-    **********************************************
-*/
-
-
-
-/*
     Home styles start
     **********************************************
 */
@@ -755,7 +741,7 @@ at large screen sizes */
     background-repeat: no-repeat;
     background-size: cover;
     background-blend-mode:overlay;
-    height: 75vh;
+    height: 100vh;
     position: relative;
 }
 

@@ -21,39 +21,11 @@
     <script>
       document.addEventListener('DOMContentLoaded', function() 
       {
-          const tooltip = document.getElementById('tooltip');
           const popin_video = document.querySelector('.popin-video');
           const videoContainer = document.querySelector('.video-container');
 
           // track variable to know when to popout home video.
           let is_video_popped_out = true;
-
-          document.querySelectorAll('.hover-word').forEach(word => 
-          {
-              word.addEventListener('mouseover', function(event) 
-              {                
-                  const definition = event.target.getAttribute('data-definition');
-                  tooltip.innerHTML = definition;
-                  tooltip.style.display = 'block';
-                  const rect = event.target.getBoundingClientRect();
-                  tooltip.style.left = `${rect.left + window.scrollX}px`;
-                  tooltip.style.top = `${rect.bottom + window.scrollY + 5}px`; // 5px below the word
-              });
-
-              word.addEventListener('mouseout', function() 
-              {
-                  console.log('mouseout fired');
-                  tooltip.style.display = 'none';
-              });
-
-              word.addEventListener('mousemove', function(event) 
-              {
-                    console.log('mousemove fired');
-                    const rect = event.target.getBoundingClientRect();
-                    tooltip.style.left = `${rect.left + window.scrollX}px`;
-                    tooltip.style.top = `${rect.bottom + window.scrollY + 5}px`;
-              });          
-          });
 
           /*
             Track when user scrolls window to trigger the popout 
@@ -293,8 +265,8 @@
                 <div class="px-1 mt-5 mb-5 text-light"> 
                                    
                     <p>
-                        Sweet sweet Jamaica, Mi Nah Lef Yah. <span class="text-uppercase fw-bold fs-1 text-md-green"> Jamaica, Jamdown, Jamrock, <span class="hover-word" data-definition="A Jamaican is a person from Jamaica.">Yard</span></span>, manny different names
-                        for a God Blessed and beautiful small Island. Wi likkle, but wi talawah.<span id="yardie" class="text-uppercase fw-bold fs-1 text-third helpp">YARDIE!</span>, overseas all Jamaicans are reffered to
+                        Sweet sweet Jamaica, Mi Nah Lef Yah. <span class="text-uppercase fw-bold fs-1 text-md-green"> Jamaica, Jamdown, Jamrock, Yard</span>, manny different names
+                        for a God Blessed and beautiful small Island. Wi likkle, but wi talawah.<span id="yardie" class="text-uppercase fw-bold fs-1 text-third">YARDIE!</span>, overseas all Jamaicans are reffered to
                         as YARDIE. You a Yardie!. That's is how we Jamaicans refer to each other when wi meet a <span class="text-uppercase fw-bold fs-1 text-primary">Farin</span>, and 
                         wi deh everyweh.                        
                     </p>
