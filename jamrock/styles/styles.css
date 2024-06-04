@@ -229,10 +229,6 @@ footer a:hover{
     text styles start
     **********************************************
 */
-header section div h1.text-primary{
-    color: var(--medium-green-color) !important;
-}
-
 .text-primary{
     color: var(--secondary-color) !important;
 }
